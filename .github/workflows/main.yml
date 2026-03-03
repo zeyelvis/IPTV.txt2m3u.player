@@ -63,6 +63,7 @@ jobs:
             #与httop同样输出httop.m3u,最多同时启用一个
             wget http://120.27.21.75:20085/sub?biWVtPA3=txt -O htl.txt  -t 2 --waitretry=5
             node ./scripts/txt2m3u.js -i htl.txt -o htl.m3u
+            python ./scripts/m3u_purifier.py -i htl.m3u -n -mt 10
             python ./scripts/m3u_merger.py -i htl.m3u -o htl_merged.m3u
             python ./scripts/url_sortergr.py -i htl_merged.m3u -o htl_merged.m3u -gr '央视,卫视,其他' -gs  
             
@@ -75,16 +76,18 @@ jobs:
             wget https://github.com/zhlshrimp/Hotel_m3u/raw/refs/heads/main/lt.txt -O hlt.txt -t 2 --waitretry=5
             node ./scripts/txt2m3u.js -i hlt.txt -o hlt.m3u
             python ./scripts/extract.py --input hlt.m3u --output hlt.m3u --eoru '卫视高清,?' -n -r
-            python ./scripts/m3u_purifier.py -i hlt.m3u -n -r 1 -mt 5
+            python ./scripts/m3u_purifier.py -i hlt.m3u -n -mt 10
             python ./scripts/m3u_merger.py -i hlt.m3u -o hlt_merged.m3u
             python ./scripts/url_sortergr.py -i hlt_merged.m3u -o hlt_merged.m3u -gr '央视,卫视,其他' -gs  
             
             wget https://github.com/zhlshrimp/Hotel_m3u/raw/refs/heads/main/dx.txt -O hdx.txt -t 2 --waitretry=5
             node ./scripts/txt2m3u.js -i hdx.txt -o hdx.m3u
+            python ./scripts/m3u_purifier.py -i hdx.m3u -n -mt 10
             python ./scripts/m3u_merger.py -i hdx.m3u -o hdx_merged.m3u
 
             wget https://github.com/zhlshrimp/Hotel_m3u/raw/refs/heads/main/yd.txt -O hyd.txt -t 2 --waitretry=5
             node ./scripts/txt2m3u.js -i hyd.txt -o hyd.m3u
+            python ./scripts/m3u_purifier.py -i hyd.m3u -n -mt 10
             python ./scripts/m3u_merger.py -i hyd.m3u -o hyd_merged.m3u
             
             
